@@ -4,6 +4,38 @@
   padding: 2rem;
   text-align: center;
 }
+.root{
+  background-color: #1e293b;
+  color: #fff;
+}
+
+/* <style type="text/css">
+.responsive-header-img {
+    background-image: url(https://static.ghost.org/v3.0.0/images/publication-cover.png);
+}
+
+@media(max-width: 1000px) {
+    .responsive-header-img {
+        background-image: url(https://static.ghost.org/v3.0.0/images/publication-cover.png);
+        background-image: -webkit-image-set(url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 1x,
+            url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 2x);
+        background-image: image-set(url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 1x,
+            url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 2x);
+    }
+}
+
+@media(max-width: 600px) {
+    .responsive-header-img {
+        background-image: url(https://static.ghost.org/v3.0.0/images/publication-cover.png);
+        background-image: -webkit-image-set(url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 1x,
+            url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 2x);
+        background-image: image-set(url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 1x,
+            url(https://static.ghost.org/v3.0.0/images/publication-cover.png) 2x);
+    }
+}
+</style> */
+
+
 
 .logo {
   height: 6em;
