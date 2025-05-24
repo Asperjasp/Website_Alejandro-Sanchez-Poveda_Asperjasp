@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -21,9 +22,31 @@
   background-size: cover;
 }
 
+/* Navigation settings */
+
+.Navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 1000;
+}
 
 
 
+.Nav-Bar-Button {
+  background: transparent;
+  color: inherit;
+}
+
+.Nav-Bar-Button:hover {
+  background-color: #2a2a2a;
+}
 
 
 .logo {
@@ -53,6 +76,8 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+
+/* */
 
 .card {
   padding: 2em;

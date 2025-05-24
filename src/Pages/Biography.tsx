@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Personal_Website = "https://asperjasp.github.io/"
 
 export function Biography() {

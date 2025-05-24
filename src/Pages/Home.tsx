@@ -1,7 +1,12 @@
 
+import { Short_Article, Medium_Article, Long_Article } from "../components/Thoghts";
+// Importing the Articles 
+
 
 export function Home() {
     return (
-     <h1> Home </h1> 
+     <div className="Home-Wrapper"> 
+         
+     </div>
     );
 }
