@@ -8,8 +8,7 @@ This website is a central hub for my academic, professional, and creative journe
 📁 Portfolio: A collection of selected work that represents my skills and experience, including software development, data science projects, and research contributions.
 
 📚 Bibliography: A curated list of books, papers, articles, and tools that have shaped my thinking and practice. These are re
-sources I recommend or have critically engaged with.
-
+sources I recommend or have critically engaged with.i
 
 
 🧪 Research & Publications: Academic and independent research, papers I've authored or co-authored, and topics I’m currently exploring or deeply interested in.

@@ -1,0 +1,52 @@
+---
+const {
+    Name,
+    Email, 
+    Linkedin, 
+    Github,
+    X ,
+    Instagram, 
+    Youtube, 
+    Tiktok
+} = Astro.props;
+import  LinkedinIcon  from '../components/Icons/Linkedin.astro';
+import  GithubIcon  from '../components/Icons/Github.astro';
+import  XIcon  from '../components/Icons/X.astro';
+import  InstagramIcon  from '../components/Icons/Instagram.astro';
+import  YoutubeIcon  from '../components/Icons/Youtube.astro';
+import  TiktokIcon  from '../components/Icons/Tiktok.astro';
+
+---
+
+<ul>
+    <li>
+        <a href={Linkedin}>
+            <LinkedinIcon />
+        </a>
+    </li>
+    <li>
+        <a href={Github}>
+            <GithubIcon />
+        </a>
+    </li>
+    <li>
+        <a href={X}>
+            <XIcon />
+        </a>
+    </li>
+    <li>
+        <a href={Instagram}>
+            <InstagramIcon />
+        </a>
+    </li>
+    <li>
+        <a href={Youtube}>
+            <YoutubeIcon />
+        </a>
+    </li>
+    <li>
+        <a href={Tiktok}>
+            <TiktokIcon />
+        </a>
+    </li>
+</ul>

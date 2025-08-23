@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import BlogItem from './BlogItem.astro';
+
+const posts = await getCollection("blog")
+console.log(posts) // Debuggear
+---
+<div class="blog-container">
+  {posts.map(post => (
+    <BlogItem 
+      title={post.data.title}
+      pubDate={post.data.pubDate}
+      summary={post.data.summary}
+      thumbnail={post.data.thumbnail} // Note que tiene dos propiedad la url y el alt
+      slug={post.slug}
+    />
+  ))}
+</div>

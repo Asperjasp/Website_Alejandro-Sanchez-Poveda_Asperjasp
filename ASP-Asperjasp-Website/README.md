@@ -19,7 +19,7 @@ Inside of your Astro project, you'll see the following folders and files:
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   └── Profesionalfoto.svg
 ├── src
 │   ├── assets
 │   │   └── astro.svg
@@ -50,3 +50,15 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+# General info
+
+This project is based on Midudev Video Building a Portolio with astro.
+# Abo
+
+- Decorating
+- We use Merriweather font from https://fontsource.org/fonts/merriweather/install which can be installed with
+
+```sh
+    bun add @fontsource-variable/merriweather
+```

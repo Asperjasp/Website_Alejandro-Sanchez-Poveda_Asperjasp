@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactCard from '../components/ContactCard.astro';
+---
+
+<Layout title="Contact Me">
+  <main class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+    <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-8">Contact Me</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mb-12">
+      I'm very open to connecting and talking about common interests! Feel free to reach out.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+
+      <ContactCard
+        name="Alejandro Sánchez Poveda"
+        email="alesanchezpoveda@gmail.com"
+        linkedin="https://www.linkedin.com/in/alejandrosanchezpoveda/"
+        github="https://github.com/asperjasp"
+        x="https://x.com/Asperjasp"
+      />
+
