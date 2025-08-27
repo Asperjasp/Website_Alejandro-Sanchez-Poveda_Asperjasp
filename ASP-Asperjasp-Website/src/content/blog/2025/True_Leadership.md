@@ -11,4 +11,4 @@ summary: 'Religion does not matter as long as it pushes you forward'
 
 El padre Isaias, un ejemplo
 
-Durante mi educaicón secundariam tuve la ilidad de ver llo que 
+Durante mi educación secundaria tuve la posibilidad de ver las caracteristicas de un gran lider.

@@ -1,8 +1,8 @@
 ---
-const { title, pubDate, summary, thumbnail , slug} = Astro.props
+const { title, pubDate, summary, thumbnail, id} = Astro.props
 ---
 
-<a href={`/blog/${slug}/`} class="blogitem flex items-start gap-4 p-4 border-b hover:bg-gray-50 transition">
+<a href={`/blog/${id}/`} class="blogitem flex items-start gap-4 p-4 border-b hover:bg-gray-50 transition">
   <div class="flex-shrink-0 w-32 h-24 overflow-hidden rounded">
     <img src={thumbnail.url} alt={thumbnail.alt} class="object-cover w-full h-full" />
   </div>

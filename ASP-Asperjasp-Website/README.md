@@ -62,3 +62,6 @@ This project is based on Midudev Video Building a Portolio with astro.
 ```sh
     bun add @fontsource-variable/merriweather
 ```
+
+
+August 22 / 2025, added the following package npx astro add node, con el propósito de desplegarlo en GCP utilizando una imagen dockerizada as
