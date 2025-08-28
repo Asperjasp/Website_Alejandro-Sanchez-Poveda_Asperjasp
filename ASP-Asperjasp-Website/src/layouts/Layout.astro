@@ -1,7 +1,9 @@
 ---
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import "../styles/global.css";
 import "@fontsource-variable/merriweather"; // Importing the Merriweather font // Comoe s variabble puedes utlizar cualquier grosor
+
 ---
 
 <!doctype html>
@@ -19,6 +21,7 @@ import "@fontsource-variable/merriweather"; // Importing the Merriweather font /
 		<div class="linear-gradient(to right, #1e293b 0%, #71a3c1 100%)" >
 		</div>
 		<slot />
+		<Footer />
 	</body>
 </html>
 

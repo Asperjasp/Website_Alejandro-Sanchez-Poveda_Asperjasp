@@ -1,20 +1,36 @@
 ---
 import { getCollection } from "astro:content";
-import BlogItem from './BlogItem.astro';
+import BlogItem from "./BlogItem.astro";
 
-const posts = await getCollection("blog") // Posts are a Data Object
+const posts = await getCollection("blog"); // Posts are a Data Object
 
-console.log(posts) // Debuggear
+console.log(posts); // Debuggear
 ---
-<div class="blog-container">
-  
-  {posts.map(post => (
-    <BlogItem 
-      title={post.data.title}
-      pubDate={post.data.pubDate}
-      summary={post.data.summary}
-      thumbnail={post.data.thumbnail}
-      slug={post.id} // Note que tiene dos propiedad la url y el alt
-    />
-  ))}
+
+<div class="blog-container my-[30px] mx-auto max-w-xl">
+  <header class="text-2xl font-bold justify-center">
+    Blog Post and Publications
+  </header>
+  <div style="height: 2px; background-color: #e5e7eb; margin: 10px 0;"></div>
+  {
+    posts.map((post) => (
+      <BlogItem
+        title={post.data.title}
+        pubDate={post.data.pubDate}
+        summary={post.data.summary}
+        thumbnail={post.data.thumbnail}
+        slug={post.id}
+        Note
+        que
+        tiene
+        dos
+        propiedad
+        la
+        url
+        y
+        el
+        alt
+      />
+    ))
+  }
 </div>

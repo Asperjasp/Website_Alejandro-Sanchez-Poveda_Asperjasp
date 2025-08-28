@@ -1,5 +1,5 @@
 ---
-title: 'Unviersity'
+title: 'Future of University'
 pubDate: "2025-08-22"
 thumbnail: 
   url: 'https://www.elespectador.com/resizer/v2/P25FTEGVJJAB5BCJIXN7PCC4G4.jpg?auth=9a315c6d81f4c87a4289bfe6e0dc2bfe971efff38b90c8e0170d1d278edea33c&width=920&height=613&smart=true&quality=70'

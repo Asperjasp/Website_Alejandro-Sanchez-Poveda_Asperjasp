@@ -10,7 +10,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  site: 'https://alejandrosanchezpoveda.tech',
   adapter: node({
     mode: 'standalone'
   })

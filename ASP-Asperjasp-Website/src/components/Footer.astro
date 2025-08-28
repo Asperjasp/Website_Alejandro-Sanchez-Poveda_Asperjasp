@@ -1,0 +1,88 @@
+---
+import LinkedinIcon from "../components/Icons/Linkedin.astro";
+import GithubIcon from "../components/Icons/Github.astro";
+import XIcon from "../components/Icons/X.astro";
+import InstagramIcon from "../components/Icons/Instagram.astro";
+import YoutubeIcon from "../components/Icons/Youtube.astro";
+import RssIcon from "../components/Icons/Rss.astro";
+import ScholarIcon from "../components/Icons/Google_Scholar_logo.astro";
+
+const socialLinks = {
+  email: "mailto:alesanchezpoveda@gmail.com",
+  linkedin: "https://www.linkedin.com/in/alejandrosanchezpoveda/",
+  github: "https://github.com/asperjasp",
+  bluesky: "https://bsky.app/profile/asperjasp.bsky.social",
+  medium: "https://medium.com/@asperjasp",
+  substack: "https://substack.com/@asperjasp",
+  x: "https://x.com/Asperjasp",
+  instagram: "https://www.instagram.com/asperjasp/",
+  youtube: "https://www.youtube.com/@Asperjasp",
+  rss: "https://alejandrosanchezpoveda.tech/rss.xml",
+  scholar: "https://scholar.google.com/citations?user=RAQ6CcgAAAAJ&hl=es",
+};
+---
+
+<footer
+  class="flex justify-center items-center py-8 w-full bg-gray-800 text-white"
+>
+  <div class="flex flex-col items-center gap-4">
+    <div class="flex gap-6">
+      <a href={socialLinks.email} aria-label="Email">
+        <svg
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+          ></path>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+          ></path>
+        </svg>
+      </a>
+
+      <a href={socialLinks.rss} aria-label="RSS">
+        <RssIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.x} aria-label="X (Twitter)">
+        <XIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.github} aria-label="GitHub">
+        <GithubIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.scholar} aria-label="Google Scholar">
+        <ScholarIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.linkedin} aria-label="LinkedIn">
+        <LinkedinIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.youtube} aria-label="YouTube">
+        <YoutubeIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+
+      <a href={socialLinks.instagram} aria-label="Instagram">
+        <InstagramIcon
+          class="w-6 h-6 text-white hover:text-gray-400 transition-colors duration-200"
+        />
+      </a>
+    </div>
+    <p class="text-sm">&copy; 2024 Alejandro Sánchez. All rights reserved.</p>
+  </div>
+</footer>
