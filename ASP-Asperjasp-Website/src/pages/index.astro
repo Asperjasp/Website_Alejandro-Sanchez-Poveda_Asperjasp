@@ -1,40 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import BlogContainer from '../components/BlogContainer.astro';
-	
-	// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-	// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import BlogContainer from "../components/BlogContainer.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<main>
-
-	<div class="main-wrapper">
-		<section class="flex items-center gap-6 w-full lg:w-[740px] mx-auto py-44">
-			<img 
-			class="rounded-full size-35 object-cover"
-			src="/Foto_Profesional_Squared.jpg" 
-			alt="Alejandro's Logo" 
-			/>	
-			<div class="Home-Introduction">
-
-				<h1 class="text-white font-bold text-4xl"> 
-					Hola, Aquí Alejandro Sánchez
-				</h1>
-				<h2> 
-					Actualmente me estoy formando como Cientifico de la Computación en la
-					<a href= "https://unal.edu.co/"> Universidad Nacional de Colombia - UNAL </a>,
-					mi interés radica mayormente en la intersección entre la tecnologia y las áreas artisitcas particularmente: 
-				</h2>
-				<ul class="list-disc ml-6">
-					<li> La música ( Generación de audio ) </li>
-					<li> El aprendizaje de idiomas asiaticos : japonés y chino ( NLP - <a href="https://github.com/taishi-i/nagisa"> Nagisa </a> ) </li>
-				</ul>
-			</div>
-		</section>
-		<BlogContainer />
-	</div>
-
-</main>
-
+  <main>
+    <div class="main-wrapper">
+      <section
+        class="flex items-center gap-6 w-full lg:w-[740px] mx-auto py-44"
+      >
+        <img
+          class="rounded-full size-35 object-cover"
+          src="/Foto_Profesional_Squared.jpg"
+          alt="Alejandro's Logo"
+        />
+        <div class="Home-Introduction">
+          <h1 class="text-white font-bold text-4xl">
+            Hola, Aquí Alejandro Sánchez
+          </h1>
+          <h2>
+            Actualmente me estoy formando como Cientifico de la Computación en
+            la
+            <a href="https://unal.edu.co/">
+              Universidad Nacional de Colombia - UNAL
+            </a>, me gusta la intersección del mundo del emprendimiento con la
+            union de técnologia y arte, particularmente:
+          </h2>
+          <ul class="list-disc ml-6">
+            <li>La música ( Generación de audio )</li>
+            <li>
+              El aprendizaje de idiomas asiáticos : japonés y chino ( NLP - <a
+                href="https://github.com/taishi-i/nagisa"
+              >
+                Nagisa
+              </a> )
+            </li>
+          </ul>
+        </div>
+      </section>
+      <BlogContainer />
+    </div>
+  </main>
 </Layout>
