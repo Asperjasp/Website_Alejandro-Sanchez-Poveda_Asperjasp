@@ -13,7 +13,7 @@ const blog = defineCollection({
     title: z.string(),
     pubDate: z.coerce.date(),
     thumbnail: z.object({
-        url : z.string().url(),
+        url : z.string(),
         alt: z.string().min(2).max(100)
     }),
     summary: z.string().min(10).max(200),

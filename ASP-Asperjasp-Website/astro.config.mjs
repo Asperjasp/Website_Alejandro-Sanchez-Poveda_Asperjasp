@@ -13,5 +13,10 @@ export default defineConfig({
   site: 'https://alejandrosanchezpoveda.tech',
   adapter: node({
     mode: 'standalone'
-  })
+  }),
+  // Internationalization for language support
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'es',
+  },
 });

@@ -1,23 +1,36 @@
 ---
-const { title, pubDate, summary, thumbnail, id} = Astro.props
+const { title, pubDate, summary, thumbnail, slug } = Astro.props;
 ---
 
-<a href={`/blog/${id}/`} class="blogitem flex items-start gap-4 p-4 border-b hover:bg-gray-50 transition">
+<a
+  href={`/blog/${slug}/`}
+  class="blogitem flex items-start gap-4 p-4 border-b hover:bg-gray-50 transition"
+>
   <div class="flex-shrink-0 w-32 h-24 overflow-hidden rounded">
-    <img src={thumbnail.url} alt={thumbnail.alt} class="object-cover w-full h-full" />
+    <img
+      src={thumbnail.url}
+      alt={thumbnail.alt}
+      class="object-cover w-full h-full"
+    />
   </div>
   <div class="flex flex-col">
     <time class="text-gray-500 text-sm mb-1" datetime={pubDate.toISOString()}>
-      {pubDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+      {
+        pubDate.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      }
     </time>
     <h2 class="text-lg font-semibold mb-1">{title}</h2>
-    <p class="text-gray-700 text-base">{summary}</p>
+    <p class="text-gray-400 text-base">{summary}</p>
   </div>
 </a>
 
 <style>
-.blogitem{
-  text-decoration: none;
-  color: inherit;
-}
+  .blogitem {
+    text-decoration: none;
+    color: inherit;
+  }
 </style>

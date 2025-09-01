@@ -1,0 +1,26 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+
+// 1. Exporta getStaticPaths para generar las rutas de los posts
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return {
+    paths: posts.map((post) => [
+      {
+        params: { slug: post.id.split("/") },
+
+        props: { post },
+      },
+    ]),
+  };
+}
+
+// 2. Recibe el post desde props
+const { post } = Astro.props as { post: CollectionEntry<"blog"> };
+---
+
+<article class="max-w-3xl mx-auto py-10 px-4">
+  <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+  <p class="text-gray-400 mb-8">{post.data.pubDate}</p>
+  <div set:html={post.body} />
+</article>
