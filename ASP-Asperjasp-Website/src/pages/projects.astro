@@ -19,5 +19,23 @@ import Layout from "../layouts/Layout.astro";
         target="_blank">Linkedin</a
       > y <a href="https://twitter.com/asperjasp" target="_blank">Twitter/X</a>.
     </p>
+
+    <!-- CV Download Buttons -->
+    <div class="flex flex-col sm:flex-row gap-6 mb-10 w-full max-w-md mx-auto">
+      <a
+        href="/EN_Alejandro_Sánchez_Poveda_CV_V6.pdf"
+        download
+        class="cv-button flex items-center justify-center px-8 py-3 bg-gray-950 text-white font-medium text-lg border-2 border-red-600 rounded-md transition-all transform hover:scale-105 hover:border-red-500"
+      >
+        Download CV (EN)
+      </a>
+      <a
+        href="/ES_Alejandro_Sánchez_Poveda_CV_V6.pdf"
+        download
+        class="cv-button flex items-center justify-center px-8 py-3 bg-gray-950 text-white font-medium text-lg border-2 border-red-600 rounded-md transition-all transform hover:scale-105 hover:border-red-500"
+      >
+        Descargar CV (ES)
+      </a>
+    </div>
   </main>
 </Layout>

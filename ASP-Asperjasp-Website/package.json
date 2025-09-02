@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/node": "^9.4.3",
     "@astrojs/rss": "^4.0.12",
+    "@astrojs/vercel": "^8.2.7",
     "@fontsource-variable/merriweather": "^5.2.4",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.4",
