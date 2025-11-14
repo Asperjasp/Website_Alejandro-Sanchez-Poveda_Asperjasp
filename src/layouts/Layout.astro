@@ -1,29 +1,30 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import MusicalBackground from "../components/MusicalBackground.astro";
 import "../styles/global.css";
 import "@fontsource-variable/merriweather"; // Importing the Merriweather font // Comoe s variabble puedes utlizar cualquier grosor
+  import Analytics from '@vercel/analytics/astro'
+  declare global {
 
-declare global {
+    interface Window {
 
-  interface Window {
+      dataLayer: any[];
+      gtag: (...args: any[]) => void;
 
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    }
 
   }
 
-}
+  ---
 
----
-
-<!doctype html>
-<html lang="es">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJXT58XLLB"
-    ></script>
-    <script>
+  <!doctype html>
+  <html lang="es">
+    <head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJXT58XLLB"
+      ></script>
+      <script>
       // Ensure the global dataLayer exists (Google Analytics expects this)
       // @ts-ignore
       window.dataLayer = window.dataLayer || []; // eslint-disable-line
@@ -52,10 +53,11 @@ declare global {
   </head>
   <body>
     <!-- Style inspiration from deviantart -->
+    <MusicalBackground />
     <Header />
-    <div class="linear-gradient(to right, #1e293b 0%, #71a3c1 100%)"></div>
     <slot />
     <Footer />
+    <Analytics />
   </body>
 </html>
 
@@ -65,11 +67,18 @@ declare global {
   }
   html {
     font-family: "merriweather", system-ui, sans-serif;
+    background-color: #0f172a;
   }
   body {
     justify-content: center;
-    background-color: #121212;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
+    color: #f1f5f9;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #f1f5f9;
   }
 </style>
