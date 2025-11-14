@@ -1,41 +1,205 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
+import ProjectItem from '../components/ProjectItem.astro';
+
+// Obtener todos los proyectos
+const allProjects = await getCollection('Projects');
+
+// Ordenar proyectos por fecha (más recientes primero) y destacar los featured
+const sortedProjects = allProjects.sort((a, b) => {
+  // Primero los destacados
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Luego por fecha
+  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
+});
 ---
 
 <Layout title="Proyectos">
-  <main
-    class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4"
-  >
-    <h1 class="text-5xl font-bold text-gray-900 dark:text-white mb-8">
-      Mis proyectos
-    </h1>
-    <p
-      class="text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mb-12"
-    >
-      Aqui hay algunos de los proyectos en los que he trabajado, sientete libre
-      de explorar, comentar y <a href="../contact">contactarme</a>, si tienes
-      interés en algún proyecto, también me puedes encontrar en <a
-        href="https://www.linkedin.com/in/alejandrosanchezpoveda/"
-        target="_blank">Linkedin</a
-      > y <a href="https://twitter.com/asperjasp" target="_blank">Twitter/X</a>.
-    </p>
+  <main class="min-h-screen py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header con título y botones de CV -->
+      <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-white mb-4">
+          Mis Proyectos
+        </h1>
+        <p class="text-lg text-slate-300 max-w-3xl mx-auto mb-8">
+          Aquí hay algunos de los proyectos en los que he trabajado. Siéntete libre
+          de explorar, comentar y <a href="/contact" class="text-blue-400 hover:text-blue-300">contactarme</a>. 
+          También me puedes encontrar en 
+          <a href="https://www.linkedin.com/in/alejandrosanchezpoveda/" target="_blank" class="text-blue-400 hover:text-blue-300">LinkedIn</a>
+          y <a href="https://twitter.com/asperjasp" target="_blank" class="text-blue-400 hover:text-blue-300">Twitter/X</a>.
+        </p>
+        
+        <!-- Botones de descarga de CV -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a
+            href="/EN_Alejandro_Sánchez_Poveda_CV_V6.pdf"
+            download
+            class="cv-button inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium text-lg border-2 border-blue-500 rounded-lg transition-all transform hover:scale-105 hover:from-blue-500 hover:to-blue-600 shadow-lg"
+          >
+            📄 Download CV (EN)
+          </a>
+          <a
+            href="/ES_Alejandro_Sánchez_Poveda_CV_V6.pdf"
+            download
+            class="cv-button inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium text-lg border-2 border-blue-500 rounded-lg transition-all transform hover:scale-105 hover:from-blue-500 hover:to-blue-600 shadow-lg"
+          >
+            📄 Descargar CV (ES)
+          </a>
+        </div>
+      </div>
 
-    <!-- CV Download Buttons -->
-    <div class="flex flex-col sm:flex-row gap-6 mb-10 w-full max-w-md mx-auto">
-      <a
-        href="/EN_Alejandro_Sánchez_Poveda_CV_V6.pdf"
-        download
-        class="cv-button flex items-center justify-center px-8 py-3 bg-gray-950 text-white font-medium text-lg border-2 border-red-600 rounded-md transition-all transform hover:scale-105 hover:border-red-500"
-      >
-        Download CV (EN)
-      </a>
-      <a
-        href="/ES_Alejandro_Sánchez_Poveda_CV_V6.pdf"
-        download
-        class="cv-button flex items-center justify-center px-8 py-3 bg-gray-950 text-white font-medium text-lg border-2 border-red-600 rounded-md transition-all transform hover:scale-105 hover:border-red-500"
-      >
-        Descargar CV (ES)
-      </a>
+      <!-- Barra de búsqueda y filtros -->
+      <div class="mb-8 space-y-4">
+        <div class="flex flex-col md:flex-row gap-4 items-center">
+          <!-- Buscador -->
+          <div class="flex-1 w-full">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="🔍 Buscar proyectos por nombre, descripción o tecnología..."
+              class="search-bar w-full"
+            />
+          </div>
+          
+          <!-- Filtro por estado -->
+          <select id="statusFilter" class="search-bar w-full md:w-auto px-6 py-3">
+            <option value="all">Todos los estados</option>
+            <option value="completed">Completados</option>
+            <option value="in-progress">En progreso</option>
+            <option value="archived">Archivados</option>
+          </select>
+          
+          <!-- Botón para mostrar solo destacados -->
+          <button
+            id="featuredToggle"
+            class="px-6 py-3 bg-yellow-900/30 border-2 border-yellow-600 text-yellow-400 rounded-lg font-medium hover:bg-yellow-900/50 transition-all w-full md:w-auto"
+          >
+            ⭐ Solo destacados
+          </button>
+        </div>
+        
+        <!-- Contador de resultados -->
+        <div class="text-slate-400 text-sm">
+          Mostrando <span id="resultCount">{sortedProjects.length}</span> de {sortedProjects.length} proyectos
+        </div>
+      </div>
+
+      <!-- Grid de proyectos -->
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {sortedProjects.map((project) => (
+          <div 
+            class="project-item" 
+            data-title={project.data.title.toLowerCase()}
+            data-description={project.data.description.toLowerCase()}
+            data-technologies={project.data.technologies.join(',').toLowerCase()}
+            data-status={project.data.status}
+            data-featured={project.data.featured}
+          >
+            <ProjectItem project={project} />
+          </div>
+        ))}
+      </div>
+      
+      <!-- Mensaje cuando no hay resultados -->
+      <div id="noResults" class="hidden text-center py-12">
+        <p class="text-2xl text-slate-400 mb-4">😔 No se encontraron proyectos</p>
+        <p class="text-slate-500">Intenta con otros términos de búsqueda</p>
+      </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  // Funcionalidad de búsqueda y filtrado
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const statusFilter = document.getElementById('statusFilter') as HTMLSelectElement;
+  const featuredToggle = document.getElementById('featuredToggle') as HTMLButtonElement;
+  const projectItems = document.querySelectorAll('.project-item');
+  const resultCount = document.getElementById('resultCount');
+  const noResults = document.getElementById('noResults');
+  const projectsGrid = document.getElementById('projectsGrid');
+  
+  let showOnlyFeatured = false;
+  
+  function filterProjects() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedStatus = statusFilter.value;
+    let visibleCount = 0;
+    
+    projectItems.forEach((item) => {
+      const title = item.getAttribute('data-title') || '';
+      const description = item.getAttribute('data-description') || '';
+      const technologies = item.getAttribute('data-technologies') || '';
+      const status = item.getAttribute('data-status') || '';
+      const featured = item.getAttribute('data-featured') === 'true';
+      
+      const matchesSearch = 
+        title.includes(searchTerm) || 
+        description.includes(searchTerm) || 
+        technologies.includes(searchTerm);
+      
+      const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
+      const matchesFeatured = !showOnlyFeatured || featured;
+      
+      if (matchesSearch && matchesStatus && matchesFeatured) {
+        (item as HTMLElement).style.display = 'block';
+        visibleCount++;
+      } else {
+        (item as HTMLElement).style.display = 'none';
+      }
+    });
+    
+    if (resultCount) {
+      resultCount.textContent = visibleCount.toString();
+    }
+    
+    // Mostrar/ocultar mensaje de no resultados
+    if (visibleCount === 0) {
+      noResults?.classList.remove('hidden');
+      projectsGrid?.classList.add('hidden');
+    } else {
+      noResults?.classList.add('hidden');
+      projectsGrid?.classList.remove('hidden');
+    }
+  }
+  
+  // Event listeners
+  searchInput?.addEventListener('input', filterProjects);
+  statusFilter?.addEventListener('change', filterProjects);
+  
+  featuredToggle?.addEventListener('click', () => {
+    showOnlyFeatured = !showOnlyFeatured;
+    
+    if (showOnlyFeatured) {
+      featuredToggle.classList.add('bg-yellow-600', 'border-yellow-400');
+      featuredToggle.classList.remove('bg-yellow-900/30', 'border-yellow-600');
+      featuredToggle.innerHTML = '⭐ Mostrando destacados';
+    } else {
+      featuredToggle.classList.remove('bg-yellow-600', 'border-yellow-400');
+      featuredToggle.classList.add('bg-yellow-900/30', 'border-yellow-600');
+      featuredToggle.innerHTML = '⭐ Solo destacados';
+    }
+    
+    filterProjects();
+  });
+</script>
+
+<style>
+  .project-item {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
