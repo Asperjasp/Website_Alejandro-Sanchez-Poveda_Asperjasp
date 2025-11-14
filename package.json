@@ -9,14 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.4.3",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/vercel": "^8.2.7",
-    "@fontsource-variable/merriweather": "^5.2.4",
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.13.4",
+    "@astrojs/node": "^9.5.0",
+    "@astrojs/rss": "^4.0.13",
+    "@astrojs/vercel": "^9.0.0",
+    "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/merriweather": "^5.2.6",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.7",
     "glob": "^11.0.3",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.17",
     "vercel": "^46.1.1"
   }
 }
