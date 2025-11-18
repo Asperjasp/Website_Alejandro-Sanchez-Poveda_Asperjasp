@@ -93,6 +93,24 @@ const featuredProjects = sortedProjects.slice(0, 3);
           </div>
         </div>
       </section>
+
+      <style>
+        /* Ajustes solo para la sección de proyectos en la home: miniaturas más pequeñas */
+        .home-projects .project-thumbnail img {
+          height: 10rem; /* 10rem = 160px (equivalente a h-40) */
+          object-fit: cover;
+        }
+
+        /* Asegurar que las tarjetas no sean demasiado altas en home */
+        .home-projects .project-card {
+          max-height: 18.5rem; /* limita la altura total de la tarjeta en home */
+        }
+
+        .home-projects .project-content {
+          gap: 0.5rem;
+        }
+      </style>
+      </section>
       
       <BlogContainer />
     </div>
