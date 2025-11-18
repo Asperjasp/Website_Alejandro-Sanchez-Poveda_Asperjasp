@@ -4,14 +4,25 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('Projects');
+  // Only return serializable params (slug). Do NOT pass the full entry object in props,
+  // because it contains functions and is not serializable for the static build.
   return projectEntries.map(entry => ({
     params: { slug: entry.id.replace('.md', '') },
-    props: { entry },
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+// Load the entry server-side using the slug param. This avoids serializing the full entry
+// through getStaticPaths (which strips methods like `render`).
+const slug = Astro.params.slug;
+const projectEntries = await getCollection('Projects');
+const entry = projectEntries.find(e => e.id.replace('.md', '') === String(slug));
+if (!entry) {
+  throw new Error(`Project not found: ${slug}`);
+}
+// Prefer using `entry.body` rendered HTML for compatibility with the content loader.
+// Some loader configurations provide `body` (HTML string) but not a `render()` method
+// at runtime. Using `body` avoids "entry.render is not a function" errors during build.
+const body = entry.body ?? '';
 const { title, description, thumbnail, technologies, links, startDate, endDate, status, featured } = entry.data;
 
 const formatDate = (date: Date) => {
@@ -140,7 +151,7 @@ const formatDate = (date: Date) => {
       <!-- Contenido del proyecto (Markdown) -->
       <div class="prose prose-invert prose-lg max-w-none mb-12">
         <div class="p-6 bg-slate-800/30 rounded-xl border border-slate-700">
-          <Content />
+          <div set:html={body} />
         </div>
       </div>
 
