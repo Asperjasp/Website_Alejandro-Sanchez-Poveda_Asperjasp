@@ -32,17 +32,7 @@ const projectSlug = project.id.replace('.md', '');
       <!-- Espaciador flexible para empujar el pie de tarjeta al fondo -->
       <div style="flex:1"></div>
 
-      <div class="flex items-center justify-between bottom-row">
-        <span class={`text-xs font-medium px-2 py-1 rounded ${
-          status === 'completed' ? 'bg-green-900/30 text-green-400' :
-          status === 'in-progress' ? 'bg-blue-900/30 text-blue-400' :
-          'bg-gray-900/30 text-gray-400'
-        }`}>
-          {status === 'completed' ? 'Completado' : 
-           status === 'in-progress' ? 'En progreso' : 
-           'Archivado'}
-        </span>
-
+      <div class="flex items-center justify-end bottom-row">
         <span class="text-slate-400 text-sm font-medium group-hover:text-slate-200 transition-transform inline-block">
           Ver más →
         </span>
