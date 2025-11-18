@@ -72,13 +72,7 @@ const sortedProjects = allProjects.sort((a, b) => {
             <option value="archived">Archivados</option>
           </select>
           
-          <!-- Botón para mostrar solo destacados -->
-          <button
-            id="featuredToggle"
-            class="px-6 py-3 bg-yellow-900/30 border-2 border-yellow-600 text-yellow-400 rounded-lg font-medium hover:bg-yellow-900/50 transition-all w-full md:w-auto"
-          >
-            ⭐ Solo destacados
-          </button>
+          <!-- (El botón 'Solo destacados' eliminado por petición de diseño) -->
         </div>
         
         <!-- Contador de resultados -->
@@ -116,13 +110,11 @@ const sortedProjects = allProjects.sort((a, b) => {
   // Funcionalidad de búsqueda y filtrado
   const searchInput = document.getElementById('searchInput') as HTMLInputElement;
   const statusFilter = document.getElementById('statusFilter') as HTMLSelectElement;
-  const featuredToggle = document.getElementById('featuredToggle') as HTMLButtonElement;
   const projectItems = document.querySelectorAll('.project-item');
   const resultCount = document.getElementById('resultCount');
   const noResults = document.getElementById('noResults');
   const projectsGrid = document.getElementById('projectsGrid');
   
-  let showOnlyFeatured = false;
   
   function filterProjects() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -142,7 +134,8 @@ const sortedProjects = allProjects.sort((a, b) => {
         technologies.includes(searchTerm);
       
       const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
-      const matchesFeatured = !showOnlyFeatured || featured;
+      // No se aplica filtro de 'solo destacados' — mostramos según búsqueda y estado únicamente
+      const matchesFeatured = true;
       
       if (matchesSearch && matchesStatus && matchesFeatured) {
         (item as HTMLElement).style.display = 'block';
@@ -170,21 +163,7 @@ const sortedProjects = allProjects.sort((a, b) => {
   searchInput?.addEventListener('input', filterProjects);
   statusFilter?.addEventListener('change', filterProjects);
   
-  featuredToggle?.addEventListener('click', () => {
-    showOnlyFeatured = !showOnlyFeatured;
-    
-    if (showOnlyFeatured) {
-      featuredToggle.classList.add('bg-yellow-600', 'border-yellow-400');
-      featuredToggle.classList.remove('bg-yellow-900/30', 'border-yellow-600');
-      featuredToggle.innerHTML = '⭐ Mostrando destacados';
-    } else {
-      featuredToggle.classList.remove('bg-yellow-600', 'border-yellow-400');
-      featuredToggle.classList.add('bg-yellow-900/30', 'border-yellow-600');
-      featuredToggle.innerHTML = '⭐ Solo destacados';
-    }
-    
-    filterProjects();
-  });
+  // 'Solo destacados' control removed — no event listener needed
 </script>
 
 <style>
