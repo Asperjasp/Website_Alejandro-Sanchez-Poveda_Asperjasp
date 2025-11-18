@@ -21,16 +21,43 @@
 }
 @import "tailwindcss";
 
-a {
-    color : #3b82f6;
-    text-decoration: underline;
-    font-weight: 500;
-    transition: color 0.2s;
+:root {
+  --color-primary: #3b82f6; /* blue */
+  --color-primary-700: #2563eb;
+  --link-accent: #f59e0b; /* amber - contrasts blue */
+  --link-accent-hover: #d97706;
+  --note-color: #94a3b8; /* soft slate for musical notes */
 }
 
-a:hover{
-    color: #60a5fa
+/* Global link styling: use amber to contrast with blue backgrounds */
+a {
+  color: var(--link-accent);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
+
+a:hover, a:focus {
+  color: var(--link-accent-hover);
+  outline: none;
+  text-decoration-color: rgba(0,0,0,0.06);
+}
+
+/* Specific link classes for accessibility and contrast */
+.university-link {
+  color: var(--link-accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.university-link:hover, .university-link:focus {
+  color: var(--link-accent-hover);
+}
+
+.external-link {
+  color: var(--link-accent);
+  text-decoration: underline;
+}
+.external-link:hover { color: var(--link-accent-hover); }
 
 /* Estilo específico para los links del navbar */
 .nav-link {
@@ -95,24 +122,8 @@ a:hover{
   text-decoration: none;
 }
 
-/* Musical background styles */
-.musical-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-}
-
-.musical-notes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.08;
-}
+/* Musical background is styled inside its component to allow component-scoped variables */
+/* See `src/components/MusicalBackground.astro` for the gradient and SVG variables. */
 
 /* Search bar styles for projects */
 .search-bar {

@@ -12,48 +12,48 @@
         height="100"
         patternUnits="userSpaceOnUse"
       >
-        <!-- Líneas del pentagrama -->
-        <line x1="0" y1="20" x2="200" y2="20" stroke="#64748b" stroke-width="0.5" />
-        <line x1="0" y1="30" x2="200" y2="30" stroke="#64748b" stroke-width="0.5" />
-        <line x1="0" y1="40" x2="200" y2="40" stroke="#64748b" stroke-width="0.5" />
-        <line x1="0" y1="50" x2="200" y2="50" stroke="#64748b" stroke-width="0.5" />
-        <line x1="0" y1="60" x2="200" y2="60" stroke="#64748b" stroke-width="0.5" />
-        
-        <!-- Clave de sol estilizada -->
-        <path
-          d="M 15 35 Q 15 25, 20 25 Q 25 25, 25 30 Q 25 35, 22 38 Q 20 40, 20 45 Q 20 50, 23 52 Q 26 54, 26 48 Q 26 42, 22 40"
-          fill="none"
-          stroke="#475569"
-          stroke-width="1.5"
-        />
-        
-        <!-- Notas musicales -->
-        <ellipse cx="50" cy="35" rx="3.5" ry="3" fill="#475569" transform="rotate(-20 50 35)" />
-        <line x1="53.5" y1="35" x2="53.5" y2="15" stroke="#475569" stroke-width="1.5" />
-        
-        <ellipse cx="80" cy="45" rx="3.5" ry="3" fill="#475569" transform="rotate(-20 80 45)" />
-        <line x1="83.5" y1="45" x2="83.5" y2="25" stroke="#475569" stroke-width="1.5" />
-        
-        <ellipse cx="110" cy="30" rx="3.5" ry="3" fill="#475569" transform="rotate(-20 110 30)" />
-        <line x1="113.5" y1="30" x2="113.5" y2="10" stroke="#475569" stroke-width="1.5" />
-        
-        <!-- Corcheas conectadas -->
-        <ellipse cx="140" cy="40" rx="3.5" ry="3" fill="#475569" transform="rotate(-20 140 40)" />
-        <line x1="143.5" y1="40" x2="143.5" y2="20" stroke="#475569" stroke-width="1.5" />
-        
-        <ellipse cx="155" cy="35" rx="3.5" ry="3" fill="#475569" transform="rotate(-20 155 35)" />
-        <line x1="158.5" y1="35" x2="158.5" y2="15" stroke="#475569" stroke-width="1.5" />
-        
-        <!-- Barra conectando corcheas -->
-        <rect x="143.5" y="15" width="15" height="2" fill="#475569" />
-        
-        <!-- Sostenido (#) -->
-        <g transform="translate(175, 30)">
-          <line x1="0" y1="0" x2="0" y2="20" stroke="#475569" stroke-width="1" />
-          <line x1="4" y1="2" x2="4" y2="18" stroke="#475569" stroke-width="1" />
-          <line x1="-2" y1="7" x2="6" y2="7" stroke="#475569" stroke-width="1" />
-          <line x1="-2" y1="13" x2="6" y2="13" stroke="#475569" stroke-width="1" />
-        </g>
+        <!-- Líneas del pentagrama (usar variable de color para mantener contraste) -->
+          <line x1="0" y1="20" x2="200" y2="20" stroke="var(--note-color)" stroke-width="0.6" />
+          <line x1="0" y1="30" x2="200" y2="30" stroke="var(--note-color)" stroke-width="0.6" />
+          <line x1="0" y1="40" x2="200" y2="40" stroke="var(--note-color)" stroke-width="0.6" />
+          <line x1="0" y1="50" x2="200" y2="50" stroke="var(--note-color)" stroke-width="0.6" />
+          <line x1="0" y1="60" x2="200" y2="60" stroke="var(--note-color)" stroke-width="0.6" />
+
+          <!-- Clave de sol estilizada -->
+          <path
+            d="M 15 35 Q 15 25, 20 25 Q 25 25, 25 30 Q 25 35, 22 38 Q 20 40, 20 45 Q 20 50, 23 52 Q 26 54, 26 48 Q 26 42, 22 40"
+            fill="none"
+            stroke="var(--note-color)"
+            stroke-width="1.6"
+          />
+
+          <!-- Notas musicales -->
+          <ellipse cx="50" cy="35" rx="3.5" ry="3" fill="var(--note-color)" transform="rotate(-20 50 35)" />
+          <line x1="53.5" y1="35" x2="53.5" y2="15" stroke="var(--note-color)" stroke-width="1.6" />
+
+          <ellipse cx="80" cy="45" rx="3.5" ry="3" fill="var(--note-color)" transform="rotate(-20 80 45)" />
+          <line x1="83.5" y1="45" x2="83.5" y2="25" stroke="var(--note-color)" stroke-width="1.6" />
+
+          <ellipse cx="110" cy="30" rx="3.5" ry="3" fill="var(--note-color)" transform="rotate(-20 110 30)" />
+          <line x1="113.5" y1="30" x2="113.5" y2="10" stroke="var(--note-color)" stroke-width="1.6" />
+
+          <!-- Corcheas conectadas -->
+          <ellipse cx="140" cy="40" rx="3.5" ry="3" fill="var(--note-color)" transform="rotate(-20 140 40)" />
+          <line x1="143.5" y1="40" x2="143.5" y2="20" stroke="var(--note-color)" stroke-width="1.6" />
+
+          <ellipse cx="155" cy="35" rx="3.5" ry="3" fill="var(--note-color)" transform="rotate(-20 155 35)" />
+          <line x1="158.5" y1="35" x2="158.5" y2="15" stroke="var(--note-color)" stroke-width="1.6" />
+
+          <!-- Barra conectando corcheas -->
+          <rect x="143.5" y="15" width="15" height="2" fill="var(--note-color)" />
+
+          <!-- Sostenido (#) -->
+          <g transform="translate(175, 30)">
+            <line x1="0" y1="0" x2="0" y2="20" stroke="var(--note-color)" stroke-width="1" />
+            <line x1="4" y1="2" x2="4" y2="18" stroke="var(--note-color)" stroke-width="1" />
+            <line x1="-2" y1="7" x2="6" y2="7" stroke="var(--note-color)" stroke-width="1" />
+            <line x1="-2" y1="13" x2="6" y2="13" stroke="var(--note-color)" stroke-width="1" />
+          </g>
       </pattern>
       
       <!-- Patrón secundario con elementos de violín -->
@@ -107,12 +107,17 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    /* Añadimos una banda de color suave para dar distinción al azul */
+    background: linear-gradient(135deg, #07112b 0%, #0f172a 30%, #0b3b57 60%, #102e4a 100%);
+    /* permitimos que el SVG use esta variable para las notas */
+    --note-color: #94a3b8; /* fallback, puede ser sobrescrito en global.css */
   }
   
   .musical-notes {
+    position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.08;
+    opacity: 0.10;
+    mix-blend-mode: screen; /* ligero efecto para separar visualmente del fondo */
   }
 </style>
