@@ -76,20 +76,12 @@ const featuredProjects = sortedProjects.slice(0, 3);
         </div>
         <!-- Mostrar 3 tarjetas destacadas en la home y un pequeño indicador 'Más' a la derecha -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-start py-6">
-          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 home-projects">
             {featuredProjects.map((project) => (
               <div class="project-item">
                 <ProjectItem project={project} />
               </div>
             ))}
-          </div>
-
-          <!-- Indicador discreto a la derecha: no roba foco, enlaza a /projects -->
-          <div class="hidden md:flex md:flex-col items-center justify-center">
-            <a href="/projects" class="text-slate-400 hover:text-slate-200 flex flex-col items-center gap-1 no-underline">
-              <span class="text-3xl font-semibold">›</span>
-              <span class="text-sm">Más</span>
-            </a>
           </div>
         </div>
       </section>
@@ -110,7 +102,7 @@ const featuredProjects = sortedProjects.slice(0, 3);
           gap: 0.5rem;
         }
       </style>
-      </section>
+      
       
       <BlogContainer />
     </div>
