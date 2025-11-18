@@ -1,6 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogContainer from "../components/BlogContainer.astro";
+import { getCollection } from 'astro:content';
+import ProjectItem from '../components/ProjectItem.astro';
+
+// Obtener proyectos para mostrar en la home (solo 3 principales)
+const allProjects = await getCollection('Projects');
+const sortedProjects = allProjects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
+});
+const featuredProjects = sortedProjects.slice(0, 3);
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -63,13 +74,23 @@ import BlogContainer from "../components/BlogContainer.astro";
             </svg>
           </a>
         </div>
-        <div class="text-center py-8">
-          <a 
-            href="/projects" 
-            class="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold text-lg rounded-lg hover:from-blue-500 hover:to-blue-600 transition-all shadow-lg"
-          >
-            🚀 Explorar mis proyectos
-          </a>
+        <!-- Mostrar 3 tarjetas destacadas en la home y un pequeño indicador 'Más' a la derecha -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-start py-6">
+          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProjects.map((project) => (
+              <div class="project-item">
+                <ProjectItem project={project} />
+              </div>
+            ))}
+          </div>
+
+          <!-- Indicador discreto a la derecha: no roba foco, enlaza a /projects -->
+          <div class="hidden md:flex md:flex-col items-center justify-center">
+            <a href="/projects" class="text-slate-400 hover:text-slate-200 flex flex-col items-center gap-1 no-underline">
+              <span class="text-3xl font-semibold">›</span>
+              <span class="text-sm">Más</span>
+            </a>
+          </div>
         </div>
       </section>
       
