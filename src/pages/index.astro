@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogContainer from "../components/BlogContainer.astro";
+import MusicScienceSection from "../components/MusicScienceSection.astro";
+import SignatureIdentity from "../components/SignatureIdentity.astro";
+import OpenResearcherCTA from "../components/OpenResearcherCTA.astro";
 import { getCollection } from 'astro:content';
 import ProjectItem from '../components/ProjectItem.astro';
 
@@ -62,6 +65,9 @@ const featuredProjects = sortedProjects.slice(0, 3);
           </p>
         </div>
       </section>
+
+      <!-- Signature Identity Component -->
+      <SignatureIdentity />
       
       <!-- Sección de proyectos destacados -->
       <section class="w-full lg:w-[900px] mx-auto py-12">
@@ -105,7 +111,12 @@ const featuredProjects = sortedProjects.slice(0, 3);
           gap: 0.5rem;
         }
       </style>
+
+      <!-- Music & Science Section -->
+      <MusicScienceSection />
       
+      <!-- Open Researcher CTA -->
+      <OpenResearcherCTA />
       
       <BlogContainer />
     </div>

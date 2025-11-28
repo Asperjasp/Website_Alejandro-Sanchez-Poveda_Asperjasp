@@ -1,19 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BgMusic from "../components/BgMusic.astro";
+import SignatureIdentity from "../components/SignatureIdentity.astro";
+import Chip from "../components/Icons/Chip.astro";
 // Functioning
 const PageTitle = "About me";
 ---
 
 <Layout>
   <!-- Background div for Music , Note the pointer events none so that whe backgorund image does not block the content-->
-  <div class="About-Container px-10 column flex-row flex py-5 dark:bg-gray-900">
+  <div class="About-Container px-10 column flex-row flex py-5 dark:bg-gray-900 relative">
+    <!-- Subtle chip/circuit background decoration -->
+    <div class="chip-bg-decoration" aria-hidden="true">
+      <Chip size={200} class="chip-icon" />
+    </div>
+    
     <img
       src="/Photos/ASP_Gofest2025.jpg"
       alt="Alejandro at Google Gofest"
-      class="h-auto w-1/2 mx-auto"
+      class="h-auto w-1/2 mx-auto relative z-10"
     />
-    <div class="Presentation bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-8">
+    <div class="Presentation bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-8 relative z-10">
       <h1 class="text-4xl font-bold text-center my-8">Sobre mí</h1>
 
       <section class="mb-6">
@@ -90,7 +97,37 @@ const PageTitle = "About me";
         <h2 class="text-2xl font-semibold text-white mb-2">Contacto rápido</h2>
         <p class="text-slate-200">Si quieres contactar, puedes usar el formulario de la página de <a href="/contact" class="external-link underline">Contacto</a> o escribirme a <a href="mailto:alesanchezpov@gmail.com" class="external-link">alesanchezpov@gmail.com</a>.</p>
       </section>
+
+      <!-- Signature Identity -->
+      <div class="mt-8">
+        <SignatureIdentity />
+      </div>
     </div>
     </div>
   </div>
 </Layout>
+
+<style>
+  .chip-bg-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.03;
+    color: #94a3b8;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .chip-icon {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media (max-width: 768px) {
+    .chip-icon {
+      width: 200px;
+      height: 200px;
+    }
+  }
+</style>

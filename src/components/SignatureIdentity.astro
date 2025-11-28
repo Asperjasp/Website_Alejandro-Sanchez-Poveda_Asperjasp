@@ -1,0 +1,89 @@
+---
+// Signature component showing hybrid identity
+// [ 🎻 Violin ] + [ 🧠 ML ] + [ 📚 Research ] + [ 🌐 Languages ]
+import Violin from "./Icons/Violin.astro";
+import Brain from "./Icons/Brain.astro";
+import Book from "./Icons/Book.astro";
+import Languages from "./Icons/Languages.astro";
+---
+
+<div class="signature-identity">
+  <div class="identity-item">
+    <Violin size={14} class="identity-icon" />
+    <span>Música</span>
+  </div>
+  <span class="separator">+</span>
+  <div class="identity-item">
+    <Brain size={14} class="identity-icon" />
+    <span>ML</span>
+  </div>
+  <span class="separator">+</span>
+  <div class="identity-item">
+    <Book size={14} class="identity-icon" />
+    <span>Investigación</span>
+  </div>
+  <span class="separator">+</span>
+  <div class="identity-item">
+    <Languages size={14} class="identity-icon" />
+    <span>Idiomas</span>
+  </div>
+</div>
+
+<style>
+  .signature-identity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin: 1rem auto;
+    max-width: fit-content;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(100, 116, 139, 0.25);
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .identity-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 1rem;
+    color: #cbd5e1;
+    transition: all 0.2s ease;
+  }
+
+  .identity-item:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #ffffff;
+  }
+
+  .identity-icon {
+    opacity: 0.8;
+  }
+
+  .separator {
+    color: #475569;
+    font-weight: 300;
+  }
+
+  @media (max-width: 480px) {
+    .signature-identity {
+      gap: 0.3rem;
+      padding: 0.5rem 0.75rem;
+    }
+    
+    .identity-item {
+      padding: 0.2rem 0.5rem;
+      font-size: 0.7rem;
+    }
+    
+    .separator {
+      font-size: 0.7rem;
+    }
+  }
+</style>

@@ -9,13 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.0",
-    "@astrojs/rss": "^4.0.13",
-    "@astrojs/vercel": "^9.0.0",
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/vercel": "^9.0.2",
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/merriweather": "^5.2.6",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.7",
+    "astro": "^5.16.2",
     "glob": "^11.0.3",
     "tailwindcss": "^4.1.17",
     "vercel": "^46.1.1"

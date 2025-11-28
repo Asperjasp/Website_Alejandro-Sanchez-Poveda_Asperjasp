@@ -1,0 +1,38 @@
+---
+// Mini violín line-art icon (12-16px)
+interface Props {
+  class?: string;
+  size?: number;
+}
+const { class: className = "", size = 16 } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Violin body -->
+  <ellipse cx="12" cy="16" rx="5" ry="6" />
+  <!-- Waist curves -->
+  <path d="M9 13c-1 0-1.5 1-1.5 3s.5 3 1.5 3" />
+  <path d="M15 13c1 0 1.5 1 1.5 3s-.5 3-1.5 3" />
+  <!-- Neck -->
+  <line x1="12" y1="10" x2="12" y2="3" />
+  <!-- Scroll -->
+  <path d="M10 3c0-1 1-2 2-2s2 1 2 2" />
+  <!-- F-holes (simplified) -->
+  <path d="M10 14c0 1 0.5 2 0.5 3" />
+  <path d="M14 14c0 1-0.5 2-0.5 3" />
+  <!-- Bridge -->
+  <line x1="9" y1="16" x2="15" y2="16" />
+  <!-- Strings -->
+  <line x1="11" y1="10" x2="11" y2="20" stroke-width="0.5" opacity="0.5" />
+  <line x1="13" y1="10" x2="13" y2="20" stroke-width="0.5" opacity="0.5" />
+</svg>

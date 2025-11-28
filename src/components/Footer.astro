@@ -6,6 +6,7 @@ import InstagramIcon from "../components/Icons/Instagram.astro";
 import YoutubeIcon from "../components/Icons/Youtube.astro";
 import RssIcon from "../components/Icons/Rss.astro";
 import ScholarIcon from "../components/Icons/Google_Scholar_logo.astro";
+import SignatureIdentity from "../components/SignatureIdentity.astro";
 
 const socialLinks = {
   email: "mailto:alesanchezpoveda@gmail.com",
@@ -26,6 +27,9 @@ const socialLinks = {
   class="flex justify-center items-center py-8 w-full bg-gray-800 text-white"
 >
   <div class="flex flex-col items-center gap-4">
+    <!-- Signature Identity -->
+    <SignatureIdentity />
+    
     <div class="flex gap-6">
       <a href={socialLinks.email} aria-label="Email">
         <svg

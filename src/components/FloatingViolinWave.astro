@@ -1,0 +1,97 @@
+---
+// Floating decorative element: violin with sine wave
+// Positioned in bottom-right corner, very subtle (8% opacity)
+---
+
+<div class="floating-violin-wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 200 100"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="0.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <!-- Stylized violin silhouette -->
+    <g class="violin" transform="translate(10, 15)">
+      <!-- Violin body -->
+      <ellipse cx="20" cy="45" rx="15" ry="20" />
+      <!-- Waist curves -->
+      <path d="M10 35c-4 0-6 5-6 10s2 10 6 10" />
+      <path d="M30 35c4 0 6 5 6 10s-2 10-6 10" />
+      <!-- Neck -->
+      <line x1="20" y1="25" x2="20" y2="5" />
+      <!-- Scroll -->
+      <path d="M16 5c0-3 2-5 4-5s4 2 4 5" />
+      <!-- F-holes -->
+      <path d="M15 40c0 4 1 8 1 12" />
+      <path d="M25 40c0 4-1 8-1 12" />
+      <!-- Bridge -->
+      <line x1="12" y1="45" x2="28" y2="45" />
+    </g>
+    
+    <!-- Sine wave emanating from violin -->
+    <g class="wave" transform="translate(50, 50)">
+      <path 
+        d="M0 0 Q15 -15 30 0 T60 0 T90 0 T120 0 T150 0" 
+        fill="none"
+        class="wave-path"
+      />
+      <path 
+        d="M5 0 Q20 -10 35 0 T65 0 T95 0 T125 0 T145 0" 
+        fill="none"
+        opacity="0.6"
+        class="wave-path"
+      />
+      <path 
+        d="M10 0 Q25 -6 40 0 T70 0 T100 0 T130 0 T140 0" 
+        fill="none"
+        opacity="0.3"
+        class="wave-path"
+      />
+    </g>
+    
+    <!-- Small musical notes floating -->
+    <g class="notes" opacity="0.4">
+      <circle cx="70" cy="25" r="3" fill="currentColor" />
+      <line x1="73" y1="25" x2="73" y2="12" />
+      
+      <circle cx="100" cy="70" r="2.5" fill="currentColor" />
+      <line x1="102.5" y1="70" x2="102.5" y2="58" />
+      
+      <circle cx="140" cy="35" r="2" fill="currentColor" />
+      <line x1="142" y1="35" x2="142" y2="25" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .floating-violin-wave {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 200px;
+    height: 100px;
+    opacity: 0.08;
+    color: #94a3b8;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .floating-violin-wave svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .wave-path {
+    stroke-dasharray: 4 2;
+  }
+
+  /* Hide on very small screens to not clutter */
+  @media (max-width: 640px) {
+    .floating-violin-wave {
+      display: none;
+    }
+  }
+</style>

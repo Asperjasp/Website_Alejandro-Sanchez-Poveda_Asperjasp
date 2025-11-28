@@ -1,0 +1,149 @@
+---
+// "En la intersección entre Música y Ciencia" section
+import Violin from "./Icons/Violin.astro";
+import Waveform from "./Icons/Waveform.astro";
+---
+
+<section class="music-science-section">
+  <div class="section-content">
+    <div class="section-icon">
+      <Violin size={32} class="icon-violin" />
+      <div class="icon-bridge">
+        <svg width="40" height="2" viewBox="0 0 40 2">
+          <line x1="0" y1="1" x2="40" y2="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" />
+        </svg>
+      </div>
+      <Waveform size={32} class="icon-wave" />
+    </div>
+    
+    <h2 class="section-title">
+      <span class="bridge-emoji">🌉</span>
+      En la intersección entre Música y Ciencia
+    </h2>
+    
+    <p class="section-description">
+      Combino <strong>Machine Learning</strong>, <strong>Audio Synthesis</strong> y 
+      <strong>teoría musical</strong> para crear herramientas, análisis y experimentos sobre sonido.
+    </p>
+    
+    <div class="section-tags">
+      <span class="tag">🎼 Audio ML</span>
+      <span class="tag">🧠 Deep Learning</span>
+      <span class="tag">🎻 Música</span>
+      <span class="tag">📊 Análisis</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .music-science-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+  }
+
+  .section-content {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(51, 65, 85, 0.4) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle gradient glow */
+  .section-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+  }
+
+  .section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #60a5fa;
+  }
+
+  .icon-violin, .icon-wave {
+    opacity: 0.8;
+  }
+
+  .icon-bridge {
+    color: #475569;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .bridge-emoji {
+    font-size: 1.2rem;
+  }
+
+  .section-description {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .section-description strong {
+    color: #93c5fd;
+    font-weight: 600;
+  }
+
+  .section-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.35rem 0.75rem;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #93c5fd;
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .section-content {
+      padding: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+    }
+
+    .section-description {
+      font-size: 1rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+    }
+  }
+</style>

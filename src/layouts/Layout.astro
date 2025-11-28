@@ -2,6 +2,8 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MusicalBackground from "../components/MusicalBackground.astro";
+import TechBackground from "../components/TechBackground.astro";
+import FloatingViolinWave from "../components/FloatingViolinWave.astro";
 import "../styles/global.css";
 import "@fontsource-variable/merriweather"; // Importing the Merriweather font // Comoe s variabble puedes utlizar cualquier grosor
   import Analytics from '@vercel/analytics/astro'
@@ -54,9 +56,11 @@ import "@fontsource-variable/merriweather"; // Importing the Merriweather font /
   <body>
     <!-- Style inspiration from deviantart -->
     <MusicalBackground />
+    <TechBackground />
     <Header />
     <slot />
     <Footer />
+    <FloatingViolinWave />
     <Analytics />
   </body>
 </html>

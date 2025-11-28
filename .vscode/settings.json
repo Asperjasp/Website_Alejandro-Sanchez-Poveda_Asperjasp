@@ -9,4 +9,8 @@
         "latex",
         "plaintext"
     ]
+    ,
+    "vim.handleKeys": {
+        "<C-b>": false
+    }
 }
