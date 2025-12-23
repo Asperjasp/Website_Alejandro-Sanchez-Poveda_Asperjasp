@@ -1,107 +1,325 @@
 ---
-// Elegant language toggle for header
-// ES | EN | 日本語 | 中文
-interface Props {
-  currentLang?: string;
-}
-const { currentLang = "es" } = Astro.props;
+// Globe-based language toggle with translation support
+// Supports: ES, EN, 日本語, 中文
 ---
 
-<div class="lang-toggle">
-  <button 
-    class={`lang-btn ${currentLang === 'es' ? 'active' : ''}`}
-    data-lang="es"
-    title="Español"
-  >
-    ES
+<div class="lang-toggle-container">
+  <button class="globe-btn" id="globeToggle" title="Change Language">
+    <img src="/world.png" alt="Language" class="globe-icon" />
   </button>
-  <span class="lang-sep">|</span>
-  <button 
-    class={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
-    data-lang="en"
-    title="English"
-  >
-    EN
-  </button>
-  <span class="lang-sep">|</span>
-  <button 
-    class={`lang-btn ${currentLang === 'ja' ? 'active' : ''}`}
-    data-lang="ja"
-    title="日本語 (Japanese)"
-  >
-    日本語
-  </button>
-  <span class="lang-sep">|</span>
-  <button 
-    class={`lang-btn ${currentLang === 'zh' ? 'active' : ''}`}
-    data-lang="zh"
-    title="中文 (Chinese)"
-  >
-    中文
-  </button>
+  
+  <!-- Dropdown menu -->
+  <div class="lang-dropdown" id="langDropdown">
+    <button class="lang-option" data-lang="es">
+      <span class="lang-flag">🇪🇸</span>
+      <span>Español</span>
+    </button>
+    <button class="lang-option" data-lang="en">
+      <span class="lang-flag">🇺🇸</span>
+      <span>English</span>
+    </button>
+    <button class="lang-option" data-lang="ja">
+      <span class="lang-flag">🇯🇵</span>
+      <span>日本語</span>
+    </button>
+    <button class="lang-option" data-lang="zh">
+      <span class="lang-flag">🇨🇳</span>
+      <span>中文</span>
+    </button>
+  </div>
 </div>
 
 <style>
-  .lang-toggle {
+  .lang-toggle-container {
+    position: relative;
+  }
+
+  .globe-btn {
+    background: transparent;
+    border: 2px solid rgba(100, 116, 139, 0.3);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
-    font-size: 0.7rem;
-    font-weight: 500;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 4px;
   }
 
-  .lang-btn {
+  .globe-btn:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.1);
+    transform: scale(1.05);
+  }
+
+  .globe-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    min-width: 140px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .lang-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
     background: transparent;
     border: none;
-    color: #64748b;
-    cursor: pointer;
-    padding: 0.25rem 0.4rem;
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
+    color: #cbd5e1;
+    font-size: 0.875rem;
     font-family: inherit;
-    font-size: 0.7rem;
-    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease;
+    text-align: left;
   }
 
-  .lang-btn:hover {
-    color: #e2e8f0;
-    background: rgba(59, 130, 246, 0.1);
-  }
-
-  .lang-btn.active {
-    color: #3b82f6;
+  .lang-option:hover {
     background: rgba(59, 130, 246, 0.15);
+    color: #ffffff;
   }
 
-  .lang-sep {
-    color: #334155;
-    font-weight: 300;
-    user-select: none;
+  .lang-option.active {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+
+  .lang-flag {
+    font-size: 1.1rem;
   }
 
   @media (max-width: 640px) {
-    .lang-toggle {
-      font-size: 0.6rem;
-      gap: 0.15rem;
+    .globe-btn {
+      width: 32px;
+      height: 32px;
     }
-    
-    .lang-btn {
-      padding: 0.2rem 0.3rem;
-      font-size: 0.6rem;
+
+    .globe-icon {
+      width: 18px;
+      height: 18px;
     }
   }
 </style>
 
 <script>
-  // Language toggle functionality (placeholder - expand with i18n later)
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = (btn as HTMLElement).dataset.lang;
-      // For now, just update active state visually
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      // TODO: Implement actual language switching with i18n
-      console.log(`Language switched to: ${lang}`);
+  // Translations object
+  const translations: Record<string, Record<string, string>> = {
+    es: {
+      // Hero
+      "Computer Science Undergrad": "Estudiante de Ciencias de la Computación",
+      // About section
+      "Sobre Mí": "Sobre Mí",
+      "🎓 Formación": "🎓 Formación",
+      "🔬 Investigación": "🔬 Investigación",
+      "🎵 Intereses": "🎵 Intereses",
+      // Blog section
+      "Blog & Publicaciones": "Blog & Publicaciones",
+      // Contact section
+      "Contacto": "Contacto",
+      "📱 Otras formas de contacto": "📱 Otras formas de contacto",
+      "🌐 Redes Sociales": "🌐 Redes Sociales",
+      "Email Personal": "Email Personal",
+      "Email Académico": "Email Académico",
+      // Navigation
+      "Inicio": "Inicio",
+      "Blog": "Blog",
+    },
+    en: {
+      // Hero
+      "Computer Science Undergrad": "Computer Science Undergrad",
+      "Estudiante de Ciencias de la Computación en la": "Computer Science student at",
+      "Universidad Nacional de Colombia": "National University of Colombia",
+      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "Focused on the intersection of AI, music, and language learning.",
+      // About section
+      "Sobre Mí": "About Me",
+      "🎓 Formación": "🎓 Education",
+      "🔬 Investigación": "🔬 Research",
+      "🎵 Intereses": "🎵 Interests",
+      "Actualmente curso Ciencias de la Computación en la UNAL. Mi formación combina fundamentos matemáticos y computacionales con intereses creativos en IA aplicada a la música y herramientas para el aprendizaje de idiomas.": "Currently studying Computer Science at UNAL. My education combines mathematical and computational foundations with creative interests in AI applied to music and language learning tools.",
+      "donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.": "where we explore Deep Learning, Topology, Information Theory and Probability.",
+      "Participo en el": "I participate in the",
+      // Interests
+      "Música + IA:": "Music + AI:",
+      "Generación de audio con modelos generativos": "Audio generation with generative models",
+      "NLP:": "NLP:",
+      "Procesamiento de lenguaje para japonés y chino": "Language processing for Japanese and Chinese",
+      "Seguridad:": "Security:",
+      "Ciberseguridad y programación competitiva": "Cybersecurity and competitive programming",
+      // Blog section
+      "Blog & Publicaciones": "Blog & Publications",
+      // Contact section
+      "Contacto": "Contact",
+      "¿Tienes alguna pregunta o propuesta? ¡No dudes en escribirme! Estoy abierto a colaboraciones, discusiones técnicas y nuevas oportunidades.": "Have a question or proposal? Don't hesitate to reach out! I'm open to collaborations, technical discussions, and new opportunities.",
+      "📱 Otras formas de contacto": "📱 Other ways to contact",
+      "🌐 Redes Sociales": "🌐 Social Media",
+      "Email Personal": "Personal Email",
+      "Email Académico": "Academic Email",
+      // Navigation
+      "Inicio": "Home",
+      "Blog": "Blog",
+    },
+    ja: {
+      // Hero
+      "Computer Science Undergrad": "コンピュータサイエンス学部生",
+      "Estudiante de Ciencias de la Computación en la": "の計算機科学の学生",
+      "Universidad Nacional de Colombia": "コロンビア国立大学",
+      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "AI、音楽、言語学習の交差点に焦点を当てています。",
+      // About section
+      "Sobre Mí": "自己紹介",
+      "🎓 Formación": "🎓 学歴",
+      "🔬 Investigación": "🔬 研究",
+      "🎵 Intereses": "🎵 興味",
+      // Blog section
+      "Blog & Publicaciones": "ブログ & 出版物",
+      // Contact section
+      "Contacto": "連絡先",
+      "📱 Otras formas de contacto": "📱 他の連絡方法",
+      "🌐 Redes Sociales": "🌐 ソーシャルメディア",
+      "Email Personal": "個人メール",
+      "Email Académico": "大学メール",
+      // Navigation
+      "Inicio": "ホーム",
+      "Blog": "ブログ",
+    },
+    zh: {
+      // Hero
+      "Computer Science Undergrad": "计算机科学本科生",
+      "Estudiante de Ciencias de la Computación en la": "在读计算机科学学生",
+      "Universidad Nacional de Colombia": "哥伦比亚国立大学",
+      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "专注于人工智能、音乐和语言学习的交汇点。",
+      // About section
+      "Sobre Mí": "关于我",
+      "🎓 Formación": "🎓 教育",
+      "🔬 Investigación": "🔬 研究",
+      "🎵 Intereses": "🎵 兴趣",
+      // Blog section
+      "Blog & Publicaciones": "博客 & 出版物",
+      // Contact section
+      "Contacto": "联系方式",
+      "📱 Otras formas de contacto": "📱 其他联系方式",
+      "🌐 Redes Sociales": "🌐 社交媒体",
+      "Email Personal": "个人邮箱",
+      "Email Académico": "学校邮箱",
+      // Navigation
+      "Inicio": "首页",
+      "Blog": "博客",
+    }
+  };
+
+  // Get stored language or default to 'es'
+  const storedLang = localStorage.getItem('preferredLanguage') || 'es';
+  let currentLang = storedLang;
+
+  // DOM elements
+  const globeBtn = document.getElementById('globeToggle');
+  const dropdown = document.getElementById('langDropdown');
+  const langOptions = document.querySelectorAll('.lang-option');
+
+  // Set initial active state
+  langOptions.forEach(opt => {
+    if ((opt as HTMLElement).dataset.lang === currentLang) {
+      opt.classList.add('active');
+    }
+  });
+
+  // Toggle dropdown
+  globeBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown?.classList.toggle('open');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    dropdown?.classList.remove('open');
+  });
+
+  // Language selection
+  langOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const lang = (option as HTMLElement).dataset.lang || 'es';
+      
+      // Update active state
+      langOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+      
+      // Store preference
+      localStorage.setItem('preferredLanguage', lang);
+      currentLang = lang;
+      
+      // Apply translations
+      applyTranslations(lang);
+      
+      // Close dropdown
+      dropdown?.classList.remove('open');
     });
   });
+
+  // Apply translations function
+  function applyTranslations(lang: string) {
+    const langTranslations = translations[lang];
+    if (!langTranslations) return;
+
+    // Get all text nodes and translate
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+
+    const textNodes: Text[] = [];
+    let node;
+    while (node = walker.nextNode()) {
+      textNodes.push(node as Text);
+    }
+
+    // For each text node, check if we have a translation
+    textNodes.forEach(textNode => {
+      const text = textNode.textContent?.trim();
+      if (text && langTranslations[text]) {
+        textNode.textContent = textNode.textContent?.replace(text, langTranslations[text]) || textNode.textContent;
+      }
+    });
+
+    // Also update any data attributes or specific elements
+    document.querySelectorAll('[data-translate]').forEach(el => {
+      const key = el.getAttribute('data-translate');
+      if (key && langTranslations[key]) {
+        el.textContent = langTranslations[key];
+      }
+    });
+  }
+
+  // Apply stored language on load
+  if (storedLang !== 'es') {
+    applyTranslations(storedLang);
+  }
 </script>
