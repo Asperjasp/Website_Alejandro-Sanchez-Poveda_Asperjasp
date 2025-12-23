@@ -5,7 +5,13 @@
 
 <div class="lang-toggle-container">
   <button class="globe-btn" id="globeToggle" title="Change Language">
-    <img src="/world.png" alt="Language" class="globe-icon" />
+    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/>
+      <ellipse cx="12" cy="12" rx="4" ry="10"/>
+      <path d="M2 12h20"/>
+      <path d="M12 2c2.5 2.5 4 5.5 4 10s-1.5 7.5-4 10"/>
+      <path d="M12 2c-2.5 2.5-4 5.5-4 10s1.5 7.5 4 10"/>
+    </svg>
   </button>
   
   <!-- Dropdown menu -->
@@ -35,29 +41,29 @@
   }
 
   .globe-btn {
-    background: transparent;
-    border: 2px solid rgba(100, 116, 139, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 4px;
+    padding: 6px;
   }
 
   .globe-btn:hover {
-    border-color: rgba(59, 130, 246, 0.5);
-    background: rgba(59, 130, 246, 0.1);
-    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
   }
 
   .globe-icon {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
+    width: 24px;
+    height: 24px;
+    stroke: white;
   }
 
   .lang-dropdown {
@@ -133,39 +139,27 @@
   // Translations object
   const translations: Record<string, Record<string, string>> = {
     es: {
-      // Hero
-      "Computer Science Undergrad": "Estudiante de Ciencias de la Computación",
-      // About section
-      "Sobre Mí": "Sobre Mí",
-      "🎓 Formación": "🎓 Formación",
-      "🔬 Investigación": "🔬 Investigación",
-      "🎵 Intereses": "🎵 Intereses",
-      // Blog section
-      "Blog & Publicaciones": "Blog & Publicaciones",
-      // Contact section
-      "Contacto": "Contacto",
-      "📱 Otras formas de contacto": "📱 Otras formas de contacto",
-      "🌐 Redes Sociales": "🌐 Redes Sociales",
-      "Email Personal": "Email Personal",
-      "Email Académico": "Email Académico",
-      // Navigation
-      "Inicio": "Inicio",
-      "Blog": "Blog",
+      // Keep Spanish as default - no changes needed
     },
     en: {
-      // Hero
+      // Hero info labels
+      "Studying:": "Studying:",
+      "CV:": "CV:",
+      "Website:": "Website:",
+      "Email:": "Email:",
+      "City:": "City:",
       "Computer Science Undergrad": "Computer Science Undergrad",
-      "Estudiante de Ciencias de la Computación en la": "Computer Science student at",
-      "Universidad Nacional de Colombia": "National University of Colombia",
-      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "Focused on the intersection of AI, music, and language learning.",
+      // Bio paragraph
+      "Actualmente curso Ciencias de la Computación en la": "Currently studying Computer Science at",
+      "UNAL": "UNAL",
+      ". Mi formación combina fundamentos matemáticos y computacionales con aspectos artísticos, resultando en interés en el área de IA aplicada a la música o procesamiento de sonido, y herramientas para el aprendizaje de idiomas.": ". My education combines mathematical and computational foundations with artistic aspects, resulting in interest in AI applied to music or sound processing, and language learning tools.",
       // About section
       "Sobre Mí": "About Me",
-      "🎓 Formación": "🎓 Education",
       "🔬 Investigación": "🔬 Research",
       "🎵 Intereses": "🎵 Interests",
-      "Actualmente curso Ciencias de la Computación en la UNAL. Mi formación combina fundamentos matemáticos y computacionales con intereses creativos en IA aplicada a la música y herramientas para el aprendizaje de idiomas.": "Currently studying Computer Science at UNAL. My education combines mathematical and computational foundations with creative interests in AI applied to music and language learning tools.",
-      "donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.": "where we explore Deep Learning, Topology, Information Theory and Probability.",
       "Participo en el": "I participate in the",
+      "SIMG — Seminario de Investigación en Modelos Generativos": "SIMG — Generative Models Research Seminar",
+      ", donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.": ", where we explore Deep Learning, Topology, Information Theory and Probability.",
       // Interests
       "Música + IA:": "Music + AI:",
       "Generación de audio con modelos generativos": "Audio generation with generative models",
@@ -177,7 +171,6 @@
       "Blog & Publicaciones": "Blog & Publications",
       // Contact section
       "Contacto": "Contact",
-      "¿Tienes alguna pregunta o propuesta? ¡No dudes en escribirme! Estoy abierto a colaboraciones, discusiones técnicas y nuevas oportunidades.": "Have a question or proposal? Don't hesitate to reach out! I'm open to collaborations, technical discussions, and new opportunities.",
       "📱 Otras formas de contacto": "📱 Other ways to contact",
       "🌐 Redes Sociales": "🌐 Social Media",
       "Email Personal": "Personal Email",
@@ -185,18 +178,34 @@
       // Navigation
       "Inicio": "Home",
       "Blog": "Blog",
+      "Publicaciones": "Publications",
     },
     ja: {
-      // Hero
+      // Hero info labels
+      "Studying:": "専攻:",
+      "CV:": "履歴書:",
+      "Website:": "ウェブサイト:",
+      "Email:": "メール:",
+      "City:": "都市:",
       "Computer Science Undergrad": "コンピュータサイエンス学部生",
-      "Estudiante de Ciencias de la Computación en la": "の計算機科学の学生",
-      "Universidad Nacional de Colombia": "コロンビア国立大学",
-      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "AI、音楽、言語学習の交差点に焦点を当てています。",
+      // Bio
+      "Actualmente curso Ciencias de la Computación en la": "現在",
+      "UNAL": "コロンビア国立大学",
+      ". Mi formación combina fundamentos matemáticos y computacionales con aspectos artísticos, resultando en interés en el área de IA aplicada a la música o procesamiento de sonido, y herramientas para el aprendizaje de idiomas.": "でコンピュータサイエンスを学んでいます。数学と計算の基礎と芸術的側面を組み合わせ、音楽やサウンド処理に応用されるAI、言語学習ツールに興味があります。",
       // About section
       "Sobre Mí": "自己紹介",
-      "🎓 Formación": "🎓 学歴",
       "🔬 Investigación": "🔬 研究",
       "🎵 Intereses": "🎵 興味",
+      "Participo en el": "私は",
+      "SIMG — Seminario de Investigación en Modelos Generativos": "SIMG — 生成モデル研究セミナー",
+      ", donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.": "に参加しています。ディープラーニング、トポロジー、情報理論、確率論を探求しています。",
+      // Interests
+      "Música + IA:": "音楽 + AI:",
+      "Generación de audio con modelos generativos": "生成モデルによるオーディオ生成",
+      "NLP:": "自然言語処理:",
+      "Procesamiento de lenguaje para japonés y chino": "日本語と中国語の言語処理",
+      "Seguridad:": "セキュリティ:",
+      "Ciberseguridad y programación competitiva": "サイバーセキュリティと競技プログラミング",
       // Blog section
       "Blog & Publicaciones": "ブログ & 出版物",
       // Contact section
@@ -208,18 +217,34 @@
       // Navigation
       "Inicio": "ホーム",
       "Blog": "ブログ",
+      "Publicaciones": "出版物",
     },
     zh: {
-      // Hero
+      // Hero info labels
+      "Studying:": "就读:",
+      "CV:": "简历:",
+      "Website:": "网站:",
+      "Email:": "邮箱:",
+      "City:": "城市:",
       "Computer Science Undergrad": "计算机科学本科生",
-      "Estudiante de Ciencias de la Computación en la": "在读计算机科学学生",
-      "Universidad Nacional de Colombia": "哥伦比亚国立大学",
-      "Enfocado en la intersección de IA, música y aprendizaje de idiomas.": "专注于人工智能、音乐和语言学习的交汇点。",
+      // Bio
+      "Actualmente curso Ciencias de la Computación en la": "目前就读于",
+      "UNAL": "哥伦比亚国立大学",
+      ". Mi formación combina fundamentos matemáticos y computacionales con aspectos artísticos, resultando en interés en el área de IA aplicada a la música o procesamiento de sonido, y herramientas para el aprendizaje de idiomas.": "计算机科学专业。我的教育结合了数学和计算基础与艺术方面，对音乐或声音处理中的AI应用以及语言学习工具产生了兴趣。",
       // About section
       "Sobre Mí": "关于我",
-      "🎓 Formación": "🎓 教育",
       "🔬 Investigación": "🔬 研究",
       "🎵 Intereses": "🎵 兴趣",
+      "Participo en el": "我参加",
+      "SIMG — Seminario de Investigación en Modelos Generativos": "SIMG — 生成模型研究研讨会",
+      ", donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.": "，探索深度学习、拓扑学、信息论和概率论。",
+      // Interests
+      "Música + IA:": "音乐 + AI:",
+      "Generación de audio con modelos generativos": "使用生成模型进行音频生成",
+      "NLP:": "自然语言处理:",
+      "Procesamiento de lenguaje para japonés y chino": "日语和中文的语言处理",
+      "Seguridad:": "安全:",
+      "Ciberseguridad y programación competitiva": "网络安全和竞技编程",
       // Blog section
       "Blog & Publicaciones": "博客 & 出版物",
       // Contact section
@@ -231,6 +256,7 @@
       // Navigation
       "Inicio": "首页",
       "Blog": "博客",
+      "Publicaciones": "出版物",
     }
   };
 
