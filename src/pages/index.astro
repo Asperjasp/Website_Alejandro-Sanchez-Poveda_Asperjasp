@@ -4,121 +4,284 @@ import BlogContainer from "../components/BlogContainer.astro";
 import MusicScienceSection from "../components/MusicScienceSection.astro";
 import SignatureIdentity from "../components/SignatureIdentity.astro";
 import OpenResearcherCTA from "../components/OpenResearcherCTA.astro";
-import { getCollection } from 'astro:content';
-import ProjectItem from '../components/ProjectItem.astro';
-
-// Obtener proyectos para mostrar en la home (solo 3 principales)
-const allProjects = await getCollection('Projects');
-const sortedProjects = allProjects.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
-});
-const featuredProjects = sortedProjects.slice(0, 3);
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import ContactForm from "../components/ContactForm.astro";
+import Chip from "../components/Icons/Chip.astro";
 ---
 
 <Layout>
   <main>
     <div class="main-wrapper px-4">
+      
+      <!-- ========== HERO SECTION ========== -->
       <section
-        class="flex flex-col md:flex-row items-center gap-8 w-full lg:w-[900px] mx-auto py-32"
+        id="hero"
+        class="flex flex-col md:flex-row items-center gap-8 w-full lg:w-[900px] mx-auto min-h-[80vh] py-20"
       >
         <img
           class="rounded-full w-40 h-40 md:w-48 md:h-48 object-cover border-4 border-blue-500/30 shadow-2xl"
           src="Photos/Foto_Profesional_Squared.jpg"
-          alt="Alejandro's Logo"
+          alt="Alejandro Sánchez Poveda"
         />
         <div class="Home-Introduction text-center md:text-left">
           <h1 class="text-white font-bold text-4xl md:text-5xl mb-4">
-            Hola, Aquí Alejandro Sánchez
+            Alejandro Sánchez Poveda
           </h1>
-          <h2 class="text-slate-300 text-lg md:text-xl leading-relaxed mb-4">
-            Actualmente me estoy formando como Científico de la Computación en
-            la
-            <a href="https://unal.edu.co/" class="text-blue-400 hover:text-blue-300 font-semibold">
-              Universidad Nacional de Colombia - UNAL
-            </a>. Mi interés se encuentra en la intersección del emprendimiento
-            con los mundos de tecnología y arte, particularmente:
-          </h2>
-          <ul class="list-disc ml-6 text-slate-300 space-y-2">
-            <li>
-              La música ( <a
-                href="https://github.com/facebookresearch/audiocraft"
-                class="text-blue-400 hover:text-blue-300"
-                >Generación de audio</a
-              > )
-            </li>
-            <li>
-              El aprendizaje de idiomas asiáticos: japonés y chino ( NLP - <a
-                href="https://github.com/taishi-i/nagisa"
-                class="text-blue-400 hover:text-blue-300"
-              >
-                Nagisa
-              </a> )
-            </li>
-          </ul>
-          <p class="text-slate-300 mt-4">
-            ¿Prefieres hablar directamente? <a href="/contact" class="text-amber-400 hover:text-amber-300 font-semibold">Contáctame aquí</a> y te responderé lo antes posible.
-          </p>
-        </div>
-      </section>
+          <p class="text-slate-400 text-lg mb-6">Computer Science Undergrad</p>
+          
+          <!-- Info Grid - Like Tomczak style -->
+          <div class="info-grid">
+            <div class="info-row">
+              <span class="info-label">Studying:</span>
+              <span class="info-value">Computer Science @ <a href="https://unal.edu.co/" target="_blank" class="university-link">Universidad Nacional de Colombia</a></span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">CV:</span>
+              <a href="/EN_Alejandro_Sánchez_Poveda_CV_V6.pdf" download class="info-link">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+                [PDF]
+              </a>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Website:</span>
+              <a href="https://alejandrosanchezpoveda.me" target="_blank" class="info-link">alejandrosanchezpoveda.me</a>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email:</span>
+              <a href="mailto:alesanchezpov@gmail.com" class="info-link">alesanchezpov@gmail.com</a>
+            </div>
+            <div class="info-row">
+              <span class="info-label">City:</span>
+              <span class="info-value">Bogotá, Colombia</span>
+            </div>
+          </div>
 
-      <!-- Signature Identity Component -->
-      <SignatureIdentity />
-      
-      <!-- Sección de proyectos destacados -->
-      <section class="w-full lg:w-[900px] mx-auto py-12">
-        <div class="flex items-center justify-between mb-8">
-          <h2 class="text-3xl font-bold text-white">✨ Proyectos Destacados</h2>
-          <a 
-            href="/projects" 
-            class="text-blue-400 hover:text-blue-300 font-medium flex items-center gap-2"
-          >
-            Ver todos
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-        <!-- Mostrar 3 tarjetas destacadas en la home y un pequeño indicador 'Más' a la derecha -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-start py-6">
-          <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 home-projects">
-            {featuredProjects.map((project) => (
-              <div class="project-item">
-                <ProjectItem project={project} />
-              </div>
-            ))}
+          <!-- Bio paragraph -->
+          <p class="text-slate-300 text-sm leading-relaxed mt-4 mb-4 max-w-xl">
+            Actualmente curso Ciencias de la Computación en la <a href="https://unal.edu.co/" target="_blank" class="university-link">UNAL</a>. Mi formación combina fundamentos matemáticos y computacionales con aspectos artísticos, resultando en interés en el área de IA aplicada a la música o procesamiento de sonido, y herramientas para el aprendizaje de idiomas.
+          </p>
+
+          <!-- Social Links Row -->
+          <div class="social-row">
+            <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="social-item" title="Google Scholar">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+              <span>Scholar</span>
+            </a>
+            <a href="https://github.com/asperjasp" target="_blank" class="social-item" title="GitHub">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 2.92-.39c.99 0 1.99.13 2.92.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.79 1.09.79 2.2 0 1.59-.01 2.87-.01 3.26 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://twitter.com/asperjasp" target="_blank" class="social-item" title="Twitter">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>Twitter</span>
+            </a>
+            <a href="https://linkedin.com/in/alejandrosanchezpoveda" target="_blank" class="social-item" title="LinkedIn">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <style>
-        /* Ajustes solo para la sección de proyectos en la home: miniaturas más pequeñas */
-        .home-projects .project-thumbnail img {
-          height: 10rem; /* 10rem = 160px (equivalente a h-40) */
-          object-fit: cover;
-        }
+      <!-- Scroll indicator -->
+      <div class="flex justify-center pb-8 animate-bounce">
+        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </div>
 
-        /* Asegurar que las tarjetas no sean demasiado altas en home */
-        .home-projects .project-card {
-          max-height: 18.5rem; /* limita la altura total de la tarjeta en home */
-        }
+      <!-- ========== ABOUT SECTION ========== -->
+      <section id="about" class="w-full lg:w-[900px] mx-auto py-20 scroll-mt-20">
+        <h2 class="text-3xl font-bold text-white mb-8">
+          Sobre Mí
+        </h2>
+        
+        <div class="about-grid">
+          <div class="about-cards">
+            <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
+              <h3 class="text-xl font-semibold text-white mb-3">🔬 Investigación</h3>
+              <p class="text-slate-300 leading-relaxed">
+                Participo en el 
+                <a href="https://wsimg-un.vercel.app/en/" target="_blank" class="text-blue-400 hover:text-blue-300">
+                  SIMG — Seminario de Investigación en Modelos Generativos
+                </a>, 
+                donde exploramos Deep Learning, Topología, Teoría de la Información y Probabilidad.
+              </p>
+            </div>
 
-        .home-projects .project-content {
-          gap: 0.5rem;
-        }
-      </style>
+            <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
+              <h3 class="text-xl font-semibold text-white mb-3">🎵 Intereses</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• <strong>Música + IA:</strong> Generación de audio con modelos generativos</li>
+                <li>• <strong>NLP:</strong> Procesamiento de lenguaje para japonés y chino</li>
+                <li>• <strong>Seguridad:</strong> Ciberseguridad y programación competitiva</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <img
+              src="/Photos/ASP_Gofest2025.jpg"
+              alt="Alejandro at Google Gofest"
+              class="rounded-xl shadow-2xl border border-slate-700/50"
+            />
+          </div>
+        </div>
+
+        <!-- Signature Identity -->
+        <div class="mt-12">
+          <SignatureIdentity />
+        </div>
+      </section>
 
       <!-- Music & Science Section -->
       <MusicScienceSection />
-      
+
       <!-- Open Researcher CTA -->
       <OpenResearcherCTA />
-      
-      <BlogContainer />
+
+      <!-- ========== PUBLICATIONS / BLOG SECTION ========== -->
+      <section id="publications" class="w-full lg:w-[900px] mx-auto py-20 scroll-mt-20">
+        <h2 class="text-3xl font-bold text-white mb-8">
+          Blog & Publicaciones
+        </h2>
+        <BlogContainer />
+      </section>
+
+      <!-- ========== CONTACT SECTION ========== -->
+      <section id="contact" class="w-full lg:w-[900px] mx-auto py-20 scroll-mt-20">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Contacto
+        </h2>
+        <p class="text-slate-400 text-lg mb-8 max-w-2xl">
+          ¿Tienes alguna pregunta o propuesta? ¡No dudes en escribirme! Estoy abierto a 
+          colaboraciones, discusiones técnicas y nuevas oportunidades.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Contact Form -->
+          <div>
+            <ContactForm />
+          </div>
+
+          <!-- Social Links -->
+          <div class="space-y-6">
+            <h3 class="text-xl font-bold text-white">📱 Otras formas de contacto</h3>
+            
+            <!-- Emails -->
+            <div class="space-y-3">
+              <a href="mailto:alesanchezpov@gmail.com" class="contact-link">
+                <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <div>
+                  <div class="font-semibold text-white">Email Personal</div>
+                  <div class="text-sm text-slate-400">alesanchezpov@gmail.com</div>
+                </div>
+              </a>
+              
+              <a href="mailto:asanchezpo@unal.edu.co" class="contact-link">
+                <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <div>
+                  <div class="font-semibold text-white">Email Académico</div>
+                  <div class="text-sm text-slate-400">asanchezpo@unal.edu.co</div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <h4 class="text-lg font-semibold text-white mt-6">🌐 Redes Sociales</h4>
+            <div class="flex flex-col gap-3">
+              <a href="https://github.com/asperjasp" target="_blank" class="social-link">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 2.92-.39c.99 0 1.99.13 2.92.39 2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.7.42.36.79 1.09.79 2.2 0 1.59-.01 2.87-.01 3.26 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/>
+                </svg>
+                GitHub
+              </a>
+              <a href="https://linkedin.com/in/alejandrosanchezpoveda" target="_blank" class="social-link">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.01 0 3.57 1.98 3.57 4.56v5.62z"/>
+                </svg>
+                LinkedIn
+              </a>
+              <a href="https://twitter.com/asperjasp" target="_blank" class="social-link">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter/X
+              </a>
+              <a href="https://www.youtube.com/@asperjasp" target="_blank" class="social-link">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a2.88 2.88 0 0 0-2.026-2.034C19.65 3.5 12 3.5 12 3.5s-7.65 0-9.472.652A2.88 2.88 0 0 0 .502 6.186 29.76 29.76 0 0 0 0 12a29.76 29.76 0 0 0 .502 5.814 2.88 2.88 0 0 0 2.026 2.034C4.35 20.5 12 20.5 12 20.5s7.65 0 9.472-.652a2.88 2.88 0 0 0 2.026-2.034A29.76 29.76 0 0 0 24 12a29.76 29.76 0 0 0-.502-5.814zM10 15.5v-7l6 3.5-6 3.5z"/>
+                </svg>
+                YouTube
+              </a>
+              <a href="https://instagram.com/asperjasp" target="_blank" class="social-link">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.41.59.22 1.01.48 1.45.92.44.44.7.86.92 1.45.17.46.354 1.26.41 2.43.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.41 2.43-.22.59-.48 1.01-.92 1.45-.44.44-.86.7-1.45.92-.46.17-1.26.354-2.43.41-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.41-.59-.22-1.01-.48-1.45-.92-.44-.44-.7-.86-.92-1.45-.17-.46-.354-1.26-.41-2.43C2.212 15.784 2.2 15.4 2.2 12s.012-3.584.07-4.85c.056-1.17.24-1.97.41-2.43.22-.59.48-1.01.92-1.45.44-.44.86-.7 1.45-.92.46-.17 1.26-.354 2.43-.41C8.416 2.212 8.8 2.2 12 2.2zm0-2.2C8.736 0 8.332.012 7.052.07c-1.28.058-2.15.24-2.91.51-.8.28-1.48.66-2.16 1.34-.68.68-1.06 1.36-1.34 2.16-.27.76-.452 1.63-.51 2.91C.012 8.332 0 8.736 0 12c0 3.264.012 3.668.07 4.948.058 1.28.24 2.15.51 2.91.28.8.66 1.48 1.34 2.16.68.68 1.36 1.06 2.16 1.34.76.27 1.63.452 2.91.51C8.332 23.988 8.736 24 12 24s3.668-.012 4.948-.07c1.28-.058 2.15-.24 2.91-.51.8-.28 1.48-.66 2.16-1.34.68-.68 1.06-1.36 1.34-2.16.27-.76.452-1.63.51-2.91.058-1.28.07-1.684.07-4.948s-.012-3.668-.07-4.948c-.058-1.28-.24-2.15-.51-2.91-.28-.8-.66-1.48-1.34-2.16-.68-.68-1.36-1.06-2.16-1.34-.76-.27-1.63-.452-2.91-.51C15.668.012 15.264 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.844-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   </main>
 </Layout>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Contact link styles */
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(51, 65, 85, 0.5) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 0.75rem;
+    color: #f1f5f9;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .contact-link:hover {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.8) 100%);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 0.5rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  /* Section spacing for scroll */
+  section {
+    scroll-margin-top: 5rem;
+  }
+</style>

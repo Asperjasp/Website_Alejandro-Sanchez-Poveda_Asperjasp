@@ -1,0 +1,94 @@
+---
+// Musical sidebars with notes on left and right edges
+---
+
+<div class="musical-sidebar musical-sidebar-left" aria-hidden="true">
+  <div class="notes-container">
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+  </div>
+</div>
+
+<div class="musical-sidebar musical-sidebar-right" aria-hidden="true">
+  <div class="notes-container">
+    <span class="note">♫</span>
+    <span class="note">♪</span>
+    <span class="note">♬</span>
+    <span class="note">♩</span>
+    <span class="note">♫</span>
+    <span class="note">♪</span>
+    <span class="note">♬</span>
+    <span class="note">♩</span>
+    <span class="note">♫</span>
+    <span class="note">♪</span>
+    <span class="note">♬</span>
+    <span class="note">♩</span>
+    <span class="note">♫</span>
+    <span class="note">♪</span>
+    <span class="note">♬</span>
+    <span class="note">♩</span>
+    <span class="note">♫</span>
+    <span class="note">♪</span>
+    <span class="note">♬</span>
+    <span class="note">♩</span>
+  </div>
+</div>
+
+<style>
+  .musical-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  .musical-sidebar-left {
+    left: 0;
+  }
+
+  .musical-sidebar-right {
+    right: 0;
+  }
+
+  .notes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px 0;
+  }
+
+  .note {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Hide on mobile to avoid cluttering the view */
+  @media (max-width: 1024px) {
+    .musical-sidebar {
+      display: none;
+    }
+  }
+</style>
