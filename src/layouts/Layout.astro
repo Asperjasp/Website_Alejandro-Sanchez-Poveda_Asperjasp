@@ -4,6 +4,8 @@ import Footer from "../components/Footer.astro";
 import MusicalBackground from "../components/MusicalBackground.astro";
 import TechBackground from "../components/TechBackground.astro";
 import FloatingViolinWave from "../components/FloatingViolinWave.astro";
+import LoadingScreen from "../components/LoadingScreen.astro";
+import MusicalSidebars from "../components/MusicalSidebars.astro";
 import "../styles/global.css";
 import "@fontsource-variable/merriweather"; // Importing the Merriweather font // Comoe s variabble puedes utlizar cualquier grosor
   import Analytics from '@vercel/analytics/astro'
@@ -54,6 +56,10 @@ import "@fontsource-variable/merriweather"; // Importing the Merriweather font /
     <title>Alejandro Sánchez - asperjasp | Home</title>
   </head>
   <body>
+    <!-- Loading Screen - shows while page loads -->
+    <LoadingScreen />
+    <!-- Musical sidebars on left and right -->
+    <MusicalSidebars />
     <!-- Style inspiration from deviantart -->
     <MusicalBackground />
     <TechBackground />
@@ -72,6 +78,7 @@ import "@fontsource-variable/merriweather"; // Importing the Merriweather font /
   html {
     font-family: "merriweather", system-ui, sans-serif;
     background-color: #0f172a;
+    scroll-behavior: smooth;
   }
   body {
     justify-content: center;
