@@ -3,54 +3,86 @@ import Violin from "./Icons/Violin.astro";
 import LanguageToggle from "./LanguageToggle.astro";
 
 const currentPath = Astro.url.pathname;
-
-// Función para determinar si un link está activo
-const isActive = (path: string) => {
-  if (path === '/') {
-    return currentPath === '/';
-  }
-  return currentPath.startsWith(path);
-};
+const isHomePage = currentPath === '/' || currentPath === '';
 ---
 
-<header class="flex justify-between items-center py-4 px-4 w-full bg-gray-950 sticky top-0 z-50 border-b border-slate-800">
+<header class="flex justify-between items-center py-4 px-4 w-full bg-gray-950/95 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-800">
   <!-- Logo/Brand with violin icon -->
   <a href="/" class="brand-link flex items-center gap-2">
     <Violin size={18} class="brand-violin" />
     <span class="brand-name">ASP</span>
   </a>
 
-  <!-- Navigation -->
-  <nav class="flex flex-row gap-x-2 text-white">
-    <a 
-      class={`nav-link ${isActive('/') ? 'active' : ''}`} 
-      href="/"
-    >
-      Inicio
-    </a>
-    <a 
-      class={`nav-link ${isActive('/about') ? 'active' : ''}`} 
-      href="/about"
-    >
-      Acerca de
-    </a>
-    <a 
-      class={`nav-link ${isActive('/projects') ? 'active' : ''}`} 
-      href="/projects"
-    >
-      Proyectos
-    </a>
-    <a 
-      class={`nav-link ${isActive('/contact') ? 'active' : ''}`} 
-      href="/contact"
-    >
-      Contacto
-    </a>
+  <!-- Navigation - scroll-based for homepage, links for other pages -->
+  <nav class="flex flex-row gap-x-1 md:gap-x-2 text-white">
+    {isHomePage ? (
+      <>
+        <a class="nav-link" href="#hero" data-section="hero">Inicio</a>
+        <a class="nav-link" href="#about" data-section="about">Sobre mí</a>
+        <a class="nav-link" href="#publications" data-section="publications">Blog</a>
+        <a class="nav-link" href="#contact" data-section="contact">Contacto</a>
+      </>
+    ) : (
+      <>
+        <a class="nav-link" href="/">Inicio</a>
+        <a class="nav-link" href="/#about">Sobre mí</a>
+        <a class="nav-link" href="/#publications">Blog</a>
+        <a class="nav-link" href="/#contact">Contacto</a>
+      </>
+    )}
   </nav>
 
   <!-- Language toggle -->
   <LanguageToggle />
 </header>
+
+<script>
+  // Smooth scroll and active section highlighting
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Smooth scroll on click
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.replace('#', '');
+        const targetSection = document.getElementById(targetId || '');
+        if (targetSection) {
+          const headerHeight = 80;
+          const targetPosition = targetSection.offsetTop - headerHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Highlight active section on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  });
+</script>
 
 <style>
   .brand-link {
