@@ -44,17 +44,5 @@ const blog = defineCollection({
    })
  });
 
- // Not used for now
-
-const publications = defineCollection({ 
-   loader: glob({ pattern: 'src/content/publications/**/*.md', base: "src/content/publications" }),
-   schema: z.object({
-       title: z.string().min(5).max(100),
-       author: z.string().min(2).max(100),
-       date: z.date(),
-       content: z.string().min(10)
-   })
- });
-
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { blog, Projects, publications };
+export const collections = { blog, Projects };
